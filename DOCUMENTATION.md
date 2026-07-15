@@ -19,6 +19,7 @@ Full reference for configuring and using the Vonge Zola theme.
   - [Projects](#projects)
   - [Testimonials](#testimonials)
 - [Taxonomies](#taxonomies)
+- [Customizing Styles](#customizing-styles)
 
 ---
 
@@ -294,11 +295,14 @@ Full-width image block.
 
 #### `content`
 
-Raw HTML content block.
+Free-form content block, written as HTML or Markdown.
 
 | Parameter | Type | Description |
 |---|---|---|
 | `content_html` | String | HTML content to render. |
+| `content_md` | String | Markdown content to render. Ignored if `content_html` is also set. |
+
+Exactly one of the two should be set; the build fails if both are missing. Note that shortcodes are not processed inside `content_md`.
 
 #### `posts-list`
 
@@ -417,3 +421,21 @@ tags = ["travel", "photography"]
 ```
 
 The theme provides a tags listing page at `/tags/` and individual tag pages at `/tags/<tag-name>/`.
+
+---
+
+## Customizing Styles
+
+All Sass variables in the theme (colors, fonts, spacing — see `sass/css/0-settings/`) are declared with `!default`, so you can override them from your site without forking the theme.
+
+Create `sass/css/global.scss` in your site (shadowing the theme's file of the same name), define the variables you want to change, then import the theme's stylesheet:
+
+```scss
+// sass/css/global.scss
+$primary-color: #ff00aa;
+$base-font-size: 16px;
+
+@import "../../themes/vonge-zola-theme/sass/css/global";
+```
+
+Adjust the import path to match your theme directory name under `themes/`. Any variable you don't set keeps its theme default.
