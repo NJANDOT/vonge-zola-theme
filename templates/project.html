@@ -1,13 +1,10 @@
-{% import "components/page-heading.html" as page_heading %}
-{% import "components/page-image.html" as page_image %}
-{% import "components/newsletter.html" as newsletter %}
 {% extends "base.html" %}
 {% block main %}
 <div class="container">
 
-  {{ page_heading::page_heading(taxonomies = page.taxonomies, title = page.title, description = page.description) }}
+  {{<page_heading taxonomies={page.taxonomies} title={page.title} description={page.description} />}}
 
-  {{ page_image::page_image(image = page.extra.image, image_alt = page.title) }}
+  {{<page_image image={page.extra.image} image_alt={page.title} />}}
 
   <div class="page animate">
     {{ page.content | safe }}
@@ -27,5 +24,5 @@
 
 </div>
 
-{{ newsletter::newsletter(config = config.extra.newsletter) }}
+{{<newsletter config={config.extra.newsletter} />}}
 {% endblock %}

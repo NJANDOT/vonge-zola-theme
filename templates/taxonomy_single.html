@@ -1,17 +1,13 @@
-{% import "components/page-heading.html" as page_heading %}
-{% import "components/newsletter.html" as newsletter %}
-{% import "components/blog-card.html" as blog_card %}
-{% import "components/project-card.html" as project_card %}
 {% extends "base.html" %}
 {% block main %}
 {% set taxonomy_title = taxonomy.name | replace(from="_",to=" ") | title %}
 {% set title = term.name | title %}
-{{ page_heading::page_heading(title = title) }}
+{{<page_heading title={title} />}}
 
 <div class="container">
   {% set_global sections = [] %}
   {% for page in term.pages %}
-    {% set_global sections = sections | concat(with=page.components | first) | unique %}
+    {% set_global sections = [...sections, page.components | first] | unique %}
   {% endfor %}
   {% for section in sections | sort %}
   <h1>{{ section | title }}</h1>
@@ -22,9 +18,9 @@
             {% for page in term.pages %}
               {% if page.components | first == section %}
                 {% if section == "projects" %}
-                  {{ project_card::project_card(data=page) }}
+                  {{<project_card data={page} />}}
                 {% else %}
-                  {{ blog_card::blog_card(data=page) }}
+                  {{<blog_card data={page} />}}
                 {% endif %}
               {% endif %}
             {% endfor %}
@@ -36,5 +32,5 @@
 </div>
 
 
-{{ newsletter::newsletter(config = config.extra.newsletter) }}
+{{<newsletter config={config.extra.newsletter} />}}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% macro content(content_html="", content_md="") %}
+{% component content(content_html="", content_md="") %}
 <div class="container">
 {% if content_html != "" %}
   <div class="page animate">{{ content_html | safe }}</div>
@@ -8,4 +8,4 @@
 {{   throw(message="Neither 'content_html' nor 'content_md' are set for content block") }}
 {% endif %}
 </div>
-{% endmacro content %}
+{% endcomponent content %}

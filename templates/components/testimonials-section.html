@@ -1,5 +1,4 @@
-{% import "components/testimonial-card.html" as testimonial_card %}
-{% macro testimonials_section(data) %}
+{% component testimonials_section(data) %}
 <!-- begin testimonials -->
 <section class="section testimonials animate">
   <div class="container">
@@ -25,7 +24,7 @@
         <div class="testimonials__slider my-slider">
         {% set section = get_section(path="testimonials/_index.md") %}
         {% for page in section.pages %}
-          {{ testimonial_card::testimonial_card(data=page) }}
+          {{<testimonial_card data={page} />}}
         {% endfor %}
         </div>
         {% endif %}
@@ -35,4 +34,4 @@
   </div>
 </section>
 <!-- end testimonials -->
-{% endmacro testimonials_section %}
+{% endcomponent testimonials_section %}

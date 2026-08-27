@@ -1,5 +1,3 @@
-{% import "components/index.html" as components %}
-{% import "components/newsletter.html" as newsletter %}
 {% extends "base.html" %}
 {% block main %}
 <div class="post-top">
@@ -80,5 +78,5 @@
 {% include "partials/disqus-comments.html" %}
 {% include "partials/related-posts.html" %}
 
-{{ newsletter::newsletter(config = config.extra.newsletter) }}
+{{<newsletter config={config.extra.newsletter} />}}
 {% endblock %}

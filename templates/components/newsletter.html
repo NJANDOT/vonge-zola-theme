@@ -1,4 +1,4 @@
-{% macro newsletter(config) %}
+{% component newsletter(config) %}
 {% set c = 'c-subscribe' %}
 <!-- begin subscribe -->
 <section class="{{c}} section">
@@ -31,4 +31,4 @@
 <script>
   var itype_text = ['{{ config.newsletter_description }}'];
 </script>
-{% endmacro newsletter %}
+{% endcomponent newsletter %}
